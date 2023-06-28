@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        #cal{
+            width:50%;
+            height:500px;
+            margin-left: 30%;
+            margin-top:10%;
+            padding-top: 15px;
+            box-shadow: 10px 10px 40px black,-10px -10px 40px black;
+        }
+        #cal #dis{
+            box-shadow: 10px 10px 40px black;
+            padding:20px;
+            height:20%;
+            margin:20px;
+
+            letter-spacing: 1.5px;
+            box-sizing: border-box;
+            font-size: 20px;
+            font-weight: bold;
+            word-wrap:break-word;
+
+        }
+        #cal button{
+            border:none;
+            width:20%;
+            height:40px;
+            margin:15px;
+            margin-left:10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #equal{
+            background-color: blue;
+            color:white;
+        }
+        #ui{
+            display: flexbox; 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cal">
+         <div id="dis"></div>
+         <div id="ui">
+            <button>(</button>
+            <button>)</button>
+            <button>AC</button>
+            <button>DEL</button>
+            <button>9</button>
+            <button>8</button>
+            <button>7</button>
+            <button>+</button>
+            <button>6</button>
+            <button>5</button>
+            <button>4</button>
+            <button>-</button>
+            <button>3</button>
+            <button>2</button>
+            <button>1</button>
+            <button>*</button>
+            <button>0</button>
+            <button>/</button>
+            <button>%</button>
+            <button id="equal">=</button>
+         </div>
+    </div>
+    <script>
+        function calculate()
+        {
+            var str = "";
+           var but = document.querySelectorAll("#ui button");
+           var display = document.getElementById("dis");
+
+           but.forEach(value => {
+              value.addEventListener("click", function(){
+
+                var val = value.textContent;
+                
+                <!-- if(display.textContent.includes("()") ) -->
+                switch(val){
+
+                    case "AC" :
+
+                    display.textContent = "";
+
+                    case 'DEL' : 
+                    display.textContent = display.textContent.slice(0,-1);
+                    break;
+
+                    case '=':
+                    display.textContent = eval(display.textContent);
+                    break;
+
+                    default:
+                    try{
+                    display.textContent += val;
+                    }
+                    catch {
+                        display.textContent = "ERROR !";
+                    }
+                }
+                
+              });  
+           });
+        }
+        calculate();
+    </script>
+</body>
+</html>
